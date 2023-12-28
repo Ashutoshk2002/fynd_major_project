@@ -1,3 +1,1 @@
-
-
-**Deployed on Netlify: https://collegecrafters.vercel.app/ **
+**Deployed on Netlify: https://collegecrafters.vercel.app/**
