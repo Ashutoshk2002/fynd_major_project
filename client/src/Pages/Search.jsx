@@ -1,9 +1,9 @@
-import React from 'react'
-import Layout from '../components/Layout/Layout'
-import { useSearch } from '../context/Search'
+import React from 'react';
+import Layout from '../components/Layout/Layout';
+import { useSearch } from '../context/Search';
 
 const Search = () => {
-    const [values, setValues] = useSearch()
+    const [values, setValues] = useSearch();
     return (
         <Layout title={'Search Results'}>
             <div className="container">

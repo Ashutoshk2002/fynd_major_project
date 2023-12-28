@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import AdminMenu from '../../components/Layout/AdminMenu'
-import Layout from '../../components/Layout/Layout'
-import { useAuth } from '../../context/auth'
-import moment from 'moment'
-import axios from 'axios'
-import { Select } from 'antd'
+import React, { useState, useEffect } from 'react';
+import AdminMenu from '../../components/Layout/AdminMenu';
+import Layout from '../../components/Layout/Layout';
+import { useAuth } from '../../context/auth';
+import moment from 'moment';
+import axios from 'axios';
+import { Select } from 'antd';
 const { Option } = Select
 const AdminOrders = () => {
-  const [status, setStatus] = useState(["Not Process", "Processing", "Shipping", "Delivered", "Cancelled"])
-  const [changeStatus, setChangeStatus] = useState("")
+  const [status, setStatus] = useState(["Not Process", "Processing", "Shipping", "Delivered", "Cancelled"]);
+  const [changeStatus, setChangeStatus] = useState("");
 
-  const [orders, setOrders] = useState([])
-  const [auth, setAuth] = useAuth()
+  const [orders, setOrders] = useState([]);
+  const [auth, setAuth] = useAuth();
 
   const getOrders = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/auth/all-orders`)
-      setOrders(data)
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/auth/all-orders`);
+      setOrders(data);
       console.log(data, orders);
     } catch (error) {
       console.log(error);
@@ -24,13 +24,13 @@ const AdminOrders = () => {
   }
   useEffect(() => {
     if (auth?.token) getOrders()
-  }, [auth?.token])
+  }, [auth?.token]);
 
   const handleChange = async (orderId, value) => {
     try {
       const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/api/v1/auth/order-status/${orderId}`,
-        { status: value })
-      getOrders()
+        { status: value });
+      getOrders();
     } catch (error) {
       console.log(error);
     }
@@ -38,6 +38,7 @@ const AdminOrders = () => {
 
   return (
     <Layout title={"All Orders"}>
+    <div className="container-fluid m-3 p-3">
       <div className="row">
         <div className="col-md-3">
           <AdminMenu />
@@ -105,6 +106,7 @@ const AdminOrders = () => {
 
           </div>
         </div>
+      </div>
       </div>
     </Layout>
   )

@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import Layout from '../components/Layout/Layout'
-import { useCart } from '../context/Cart'
-import { useAuth } from '../context/auth'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import Layout from '../components/Layout/Layout';
+import { useCart } from '../context/Cart';
+import { useAuth } from '../context/auth';
+import { useNavigate } from 'react-router-dom';
 import DropIn from "braintree-web-drop-in-react";
-import axios from 'axios'
-import toast from 'react-hot-toast'
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const CartPage = () => {
-    const [cart, setCart] = useCart()
-    const [auth, setAuth] = useAuth()
-    const navigate = useNavigate()
-    const [clientToken, setClientToken] = useState("")
-    const [instance, setinstance] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [cart, setCart] = useCart();
+    const [auth, setAuth] = useAuth();
+    const navigate = useNavigate();
+    const [clientToken, setClientToken] = useState("");
+    const [instance, setinstance] = useState("");
+    const [loading, setLoading] = useState(false);
 
     //total price
     const totalPrice = () => {
@@ -21,7 +21,7 @@ const CartPage = () => {
             let total = 0;
             cart?.map(item => {
                 total = total + item.price
-            })
+            });
             return total.toLocaleString('en-IN', {
                 maximumFractionDigits: 2,
                 style: 'currency',
@@ -35,11 +35,11 @@ const CartPage = () => {
     //remove from cart
     const removeCartItem = (pid) => {
         try {
-            let myCart = [...cart]
-            let index = myCart.findIndex(item => item._id === pid)
-            myCart.splice(index, 1)
-            setCart(myCart)
-            localStorage.setItem('cart', JSON.stringify(myCart))
+            let myCart = [...cart];
+            let index = myCart.findIndex(item => item._id === pid);
+            myCart.splice(index, 1);
+            setCart(myCart);
+            localStorage.setItem('cart', JSON.stringify(myCart));
         } catch (error) {
             console.log(error);
         }
@@ -48,8 +48,8 @@ const CartPage = () => {
     //get payment gateway token
     const getToken = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/braintree/token`)
-            setClientToken(data?.clientToken)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/braintree/token`);
+            setClientToken(data?.clientToken);
         } catch (error) {
             console.log(error);
         }
@@ -58,23 +58,23 @@ const CartPage = () => {
 
     const handlePayment = async () => {
         try {
-            setLoading(true)
-            const { nonce } = await instance.requestPaymentMethod()
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/product/braintree/payment`, { nonce, cart })
-            setLoading(false)
-            localStorage.removeItem('cart')
-            setCart([])
-            navigate('/dashboard/user/orders')
-            toast.success('Payment Completed Successfully')
+            setLoading(true);
+            const { nonce } = await instance.requestPaymentMethod();
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/product/braintree/payment`, { nonce, cart });
+            setLoading(false);
+            localStorage.removeItem('cart');
+            setCart([]);
+            navigate('/dashboard/user/orders');
+            toast.success('Payment Completed Successfully');
         } catch (error) {
             console.log(error);
-            setLoading(false)
+            setLoading(false);
         }
     }
 
     useEffect(() => {
-        getToken()
-    }, [auth?.token])
+        getToken();
+    }, [auth?.token]);
 
     return (
         <Layout title={"Cart"}>
@@ -96,9 +96,19 @@ const CartPage = () => {
                             {
                                 cart?.map(p => (
                                     <>
-                                        <div className="row mb-2 p-3 card flex-row">
+                                        {/* <div className="row mb-2 p-3 card flex-row">
                                             <div className="col-md-4">
-                                                <img src={`${import.meta.env.VITE_API_URL}/api/v1/product/product-photo/${p._id}`} className="card-img-top" alt={p.name} width={"100px"} height={"100px"} />
+                                                <img src={`${import.meta.env.VITE_API_URL}/api/v1/product/product-photo/${p._id}`} className="img-fluid " alt={p.name} width={"100px"} height={"100px"} />
+                                            </div> */}
+                                        <div className="row mb-2 p-3 card flex-row" key={p._id}>
+                                            <div className="col-md-4 d-flex align-items-center justify-content-center">
+                                                <img
+                                                    src={`${import.meta.env.VITE_API_URL}/api/v1/product/product-photo/${p._id}`}
+                                                    className="img-fluid"
+                                                    alt={p.name}
+                                                    width={"100px"}
+                                                    height={"100px"}
+                                                />
                                             </div>
                                             <div className="col-md-8">
                                                 <p>{p.name}</p>
@@ -114,7 +124,15 @@ const CartPage = () => {
                     </div>
                     <div className="col-md-4 text-center">
                         <h4>Cart Summary</h4>
-                        <p>Total | Checkout | Payment</p>
+                        <hr />
+                        <div className="alert alert-light" role="alert" style={{ lineHeight: '5px' }}>
+
+                            <h5 className='text-center'>Dummy Credentials</h5>
+                            <p className="text-center">Card No: 4242 4242 4242 4242</p>
+                            <p className="text-center">Expiry Date: 12/25</p>
+                            <p className="text-center">CVV: 121</p>
+                        </div>
+
                         <hr />
                         <h4>Total: {totalPrice()} </h4>
                         {auth?.user?.address ? (

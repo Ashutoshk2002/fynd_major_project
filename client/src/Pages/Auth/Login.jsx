@@ -11,7 +11,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState();
 
-  const [auth, setAuth] = useAuth()
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -28,8 +28,8 @@ const Login = () => {
           ...auth,
           user: res.data.user,
           token: res.data.token
-        })
-        localStorage.setItem('auth', JSON.stringify(res.data))
+        });
+        localStorage.setItem('auth', JSON.stringify(res.data));
         navigate(location.state || "/");
       } else {
         toast.error(res.data.message);

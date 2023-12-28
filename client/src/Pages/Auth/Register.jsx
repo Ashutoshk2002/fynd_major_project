@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import axios from 'axios'
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
-import '../../styles/AuthStyles.css'
+import '../../styles/AuthStyles.css';
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -14,22 +14,23 @@ const Register = () => {
     const [prn_no, setPrn] = useState("");
     const [answer, setAnswer] = useState("");
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, { name, email, password, phone, prn_no, address, answer })
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/auth/register`, 
+            { name, email, password, phone, prn_no, address, answer });
             if (res.data.success && res) {
-                toast.success(res.data.message)
-                navigate("/login")
+                toast.success(res.data.message);
+                navigate("/login");
             }
             else {
-                toast.error(res.data.message)
+                toast.error(res.data.message);
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong")
+            toast.error("Something went wrong");
         }
     }
 
@@ -126,4 +127,4 @@ const Register = () => {
     );
 };
 
-export default Register;
+export default Register

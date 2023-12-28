@@ -1,66 +1,66 @@
-import React, { useState, useEffect } from 'react'
-import Layout from '../../components/Layout/Layout'
-import AdminMenu from '../../components/Layout/AdminMenu'
-import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast'
-import axios from 'axios'
-import { Select } from 'antd'
+import React, { useState, useEffect } from 'react';
+import Layout from '../../components/Layout/Layout';
+import AdminMenu from '../../components/Layout/AdminMenu';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { Select } from 'antd';
 const { Option } = Select
 
 const CreateProduct = () => {
 
-  const navigate=useNavigate()
+  const navigate=useNavigate();
 
-  const [categories, setCategories] = useState([])
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [price, setPrice] = useState('')
-  const [category, setCategory] = useState('')
-  const [quantity, setQuantity] = useState('')
-  const [photo, setPhoto] = useState('')
-  const [shipping, setShipping] = useState('')
+  const [categories, setCategories] = useState([]);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [category, setCategory] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [photo, setPhoto] = useState('');
+  const [shipping, setShipping] = useState('');
 
 
   //get all categories
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/category/get-categories`)
+      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/category/get-categories`);
       if (data?.success) {
-        setCategories(data?.category)
+        setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error('Something went wrong while fetching categories')
+      toast.error('Something went wrong while fetching categories');
     }
   }
 
   useEffect(() => {
-    getAllCategory()
-  }, [])
+    getAllCategory();
+  }, []);
 
   //create product function
   const handleCreate=async(e)=>{
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const productData=new FormData()
-      productData.append('name',name)
-      productData.append('description',description)
-      productData.append('quantity',quantity)
-      productData.append('price',price)
-      productData.append('shipping',shipping)
-      productData.append('photo',photo)
-      productData.append('category',category)
-      const {data} =axios.post(`${import.meta.env.VITE_API_URL}/api/v1/product/create-product/`,productData)
+      const productData=new FormData();
+      productData.append('name',name);
+      productData.append('description',description);
+      productData.append('quantity',quantity);
+      productData.append('price',price);
+      productData.append('shipping',shipping);
+      productData.append('photo',photo);
+      productData.append('category',category);
+      const {data} =axios.post(`${import.meta.env.VITE_API_URL}/api/v1/product/create-product/`,productData);
       //toast error
       if(data?.success){
-        toast.error(data?.message)
+        toast.error(data?.message);
       }else{
-        toast.success('Product Created Successfully')
-        navigate('/dashboard/admin/products')
+        toast.success('Product Created Successfully');
+        navigate('/dashboard/admin/products');
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong")
+      toast.error("Something went wrong");
     }
   }
 

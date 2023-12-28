@@ -1,26 +1,27 @@
-import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
-import { GiShoppingBag } from "react-icons/gi";
+import React from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { IoSchool } from "react-icons/io5";
 import { useAuth } from '../../context/auth';
-import toast from 'react-hot-toast'
+import toast from 'react-hot-toast';
 import SearchInput from '../Form/SearchInput';
 import useCategory from '../../hooks/useCategory';
 import { useCart } from '../../context/Cart';
 import { Badge } from 'antd';
-
+import '../../styles/HeaderStyle.css';
 const Header = () => {
-  const [auth, setAuth] = useAuth()
-  const [cart] = useCart()
-  const categories = useCategory()
+  const [auth, setAuth] = useAuth();
+  const [cart] = useCart();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
       user: null,
       token: ""
     })
-    localStorage.removeItem('auth')
-    toast.success("Logout Successfully")
+    localStorage.removeItem('auth');
+    toast.success("Logout Successfully");
   }
+  
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -29,11 +30,14 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand"><GiShoppingBag />CollegeCrafters</Link>
+            <Link to="/" className="navbar-brand"><IoSchool /> CollegeCrafters</Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <SearchInput />
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">Home</NavLink>
+                <NavLink to="/" className="nav-link btn-2">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/xerox" className="nav-link">Photocopy</NavLink>
               </li>
               <li className="nav-item dropdown">
                 <Link
@@ -83,9 +87,9 @@ const Header = () => {
 
                   </>)
               }
-              <li className="nav-item">
+              <li className="nav-item p-1">
               <Badge count={cart?.length} showZero>
-                <NavLink to="/cart" className="nav-link">Cart</NavLink>
+                <NavLink to="/cart" className="nav-link"><span style={{fontFamily:'Poppins',fontSize:'17px'}}>Cart</span></NavLink>
               </Badge>
               </li>
             </ul>

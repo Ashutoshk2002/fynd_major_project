@@ -1,97 +1,97 @@
-import React, { useState, useEffect } from 'react'
-import Layout from '../../components/Layout/Layout'
-import AdminMenu from '../../components/Layout/AdminMenu'
-import { useNavigate, useParams } from 'react-router-dom'
-import toast from 'react-hot-toast'
-import axios from 'axios'
-import { Select } from 'antd'
+import React, { useState, useEffect } from 'react';
+import Layout from '../../components/Layout/Layout';
+import AdminMenu from '../../components/Layout/AdminMenu';
+import { useNavigate, useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import axios from 'axios';
+import { Select } from 'antd';
 const { Option } = Select
 //toast error *
 const UpdateProduct = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const params = useParams();
 
-    const [categories, setCategories] = useState([])
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [price, setPrice] = useState()
-    const [category, setCategory] = useState('')
-    const [quantity, setQuantity] = useState()
-    const [photo, setPhoto] = useState('')
-    const [shipping, setShipping] = useState('')
-    const [id, setId] = useState("")
+    const [categories, setCategories] = useState([]);
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState();
+    const [category, setCategory] = useState('');
+    const [quantity, setQuantity] = useState();
+    const [photo, setPhoto] = useState('');
+    const [shipping, setShipping] = useState('');
+    const [id, setId] = useState("");
 
 
     //get single product
     const getSingleProduct = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/get-product/${params.slug}`)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/get-product/${params.slug}`);
             setName(data.product.name);
             setDescription(data.product.description);
             setPrice(data.product.price);
             setQuantity(data.product.quantity);
             setCategory(data.product.category._id);
             setPhoto(data.product.photo);
-            setId(data.product._id)
+            setId(data.product._id);
         } catch (error) {
             console.log(error);
-            toast.error('Something went wrong')
+            toast.error('Something went wrong');
         }
     }
 
     useEffect(() => {
-        getSingleProduct()
+        getSingleProduct();
         // eslint-disable-next-line 
     }, [])
 
     //get all categories
     const getAllCategory = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/category/get-categories`)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/category/get-categories`);
             if (data?.success) {
-                setCategories(data?.category)
+                setCategories(data?.category);
             }
         } catch (error) {
             console.log(error);
-            toast.error('Something went wrong while fetching categories')
+            toast.error('Something went wrong while fetching categories');
         }
     }
 
     useEffect(() => {
-        getAllCategory()
-    }, [])
+        getAllCategory();
+    }, []);
 
     //update product function
     const handleUpdate = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const productData = new FormData()
-            productData.append('name', name)
-            productData.append('description', description)
-            productData.append('quantity', quantity)
-            productData.append('price', price)
-            productData.append('shipping', shipping)
-            photo && productData.append('photo', photo)
-            productData.append('category', category)
-            const { data } = axios.put(`${import.meta.env.VITE_API_URL}/api/v1/product/update-product/${id}`, productData)
+            const productData = new FormData();
+            productData.append('name', name);
+            productData.append('description', description);
+            productData.append('quantity', quantity);
+            productData.append('price', price);
+            productData.append('shipping', shipping);
+            photo && productData.append('photo', photo);
+            productData.append('category', category);
+            const { data } = axios.put(`${import.meta.env.VITE_API_URL}/api/v1/product/update-product/${id}`, productData);
             //toast error
             if (data?.success) {
-                toast.error(data?.message)
+                toast.error(data?.message);
             } else {
-                toast.success('Product Updated Successfully')
-                navigate('/dashboard/admin/products')
+                toast.success('Product Updated Successfully');
+                navigate('/dashboard/admin/products');
             }
         } catch (error) {
             console.log(error);
-            toast.error("Something went wrong")
+            toast.error("Something went wrong");
         }
     }
 
     //delete product
     const handleDelete=async()=>{ 
         try {
-            let answer=window.prompt('Are You Sure want to delete this product ?')
+            let answer=window.prompt('Are You Sure want to delete this product ?');
             if(!answer) return
             const {data}=await axios.delete(`${import.meta.env.VITE_API_URL}/api/v1/product/delete-product/${id}`)
             console.log(data);
@@ -99,7 +99,7 @@ const UpdateProduct = () => {
             navigate('/dashboard/admin/products')
         } catch (error) {
             console.log(error);
-            toast.error('Something went wrong')
+            toast.error('Something went wrong');
         }
     }
 

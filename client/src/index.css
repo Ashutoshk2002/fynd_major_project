@@ -8,52 +8,7 @@
 /* font-family: 'Playfair Display', serif; */
 /* font-family: 'Poppins', sans-serif; */
 
-/* Header */
-/* navbar css */
-.navbar{
-    font-family:'Poppins', sans-serif;
-    font-size: 17px;
-    line-height: 26px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 6px -6px gray;
-    --webkit-box-shadow:0 8px 6px -6px gray;
-    border-bottom: solid grey !important;
-}
 
-.nav-link{
-    font-weight: 300 !important;
-}
-
-.active{
-    border-bottom: 1.5px solid black;
-}
-
-.navbar-brand{
-    font-weight: 700;
-    font-family: 'roboto','sans-serif';
-    letter-spacing: 2px;
-}
-
-
-/* Footer */
-.footer{
-    color:white;
-    padding: 25px;
-    background:#00000000; /*for old version */
-    background: -webkit-linear-gradient(to right,#434343,#000000);
-    background: linear-gradient(to right,#434343,#000000);
-}
-
-.footer a{
-    text-decoration: none;
-    color:white;
-    padding:10px;
-}
-
-.footer a:hover{
-    color:#ffefba;
-    border-bottom: 1px solid #ffefba;
-}
 
 /* Page Not Found */
 .pnf{
@@ -88,10 +43,10 @@
 
 /* Contact us */
 
-.contactus {
+.contact_us {
     margin: 0;
     padding: 0;
-    height: 90vh;
+    /* height: 90vh; */
     display: flex;
     align-items: center;
     justify-content: center;

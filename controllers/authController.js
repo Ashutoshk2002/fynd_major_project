@@ -1,6 +1,7 @@
 import { ComparePassword, hashPassword } from "../helpers/authHelper.js";
 import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
+import xeroxModel from "../models/xeroxModel.js";
 import JWT from "jsonwebtoken";
 
 export const registerController = async (req, res) => {
@@ -227,7 +228,7 @@ export const getAllOrdersController = async (req, res) => {
       .find({})
       .populate("products", "-photo")
       .populate("buyer", "name")
-      .sort('-createdAt');
+      .sort("-createdAt");
     res.json(orders);
   } catch (error) {
     console.log(error);
@@ -239,19 +240,41 @@ export const getAllOrdersController = async (req, res) => {
   }
 };
 
-
 // orders status update -Admin
 export const orderStatusController = async (req, res) => {
   try {
-    const {orderId} = req.params
-    const {status}=req.body
-    const orders=await orderModel.findByIdAndUpdate(orderId,{status},{new:true})
-    res.json(orders)
+    const { orderId } = req.params;
+    const { status } = req.body;
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
+    res.json(orders);
   } catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
       message: "Error while Updating Order",
+      error,
+    });
+  }
+};
+
+//get all pdf
+export const getPdfController = async (req, res) => {
+  try {
+    const pdf = await xeroxModel
+      .find({})
+      .populate("owner")
+      .sort("-createdAt");
+    res.status(200).json({
+      pdf,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
       error,
     });
   }

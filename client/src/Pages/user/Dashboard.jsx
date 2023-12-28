@@ -1,9 +1,9 @@
-import React from 'react'
-import Layout from '../../components/Layout/Layout'
-import UserMenu from '../../components/Layout/UserMenu'
-import { useAuth } from '../../context/auth'
+import React from 'react';
+import Layout from '../../components/Layout/Layout';
+import UserMenu from '../../components/Layout/UserMenu';
+import { useAuth } from '../../context/auth';
 const Dashboard = () => {
-  const [auth] = useAuth()
+  const [auth] = useAuth();
   return (
 
     <Layout title="Dashboard-CollegeCrafters">

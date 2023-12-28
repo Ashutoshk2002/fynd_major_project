@@ -1,19 +1,76 @@
-import React from 'react'
-import Layout from '../components/Layout/Layout'
+import React from 'react';
+import Layout from '../components/Layout/Layout';
 
 const About = () => {
   return (
     <Layout title={"About us - CollegeCrafters"}>
-      <div className="row contactus">
-        <div className="col-md-6">
-          <img src="./src/assets/about.jpg" alt="contactus" style={{ width: "100%" }} />
+      <div className="row contact_us">
+        <div className="col-md-5">
+          <img src="./src/assets/about.jpg" alt="contactus" style={{ width: "100%"}} />
         </div>
-        <div className="col-md-4">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quis recusandae perferendis neque, nobis tempore eveniet accusantium obcaecati totam esse reiciendis facilis, facere numquam fugit asperiores autem nihil dicta pariatur!
-          Eligendi sequi ex, optio blanditiis, expedita quod voluptas dolores facilis reprehenderit quia asperiores, distinctio autem ullam eveniet assumenda nisi. Iusto earum veniam maxime dolores ullam alias optio. Similique, maxime consequatur.
-          Deleniti blanditiis libero expedita? Deserunt expedita consequatur aperiam, dolorem excepturi dolores dolor velit nesciunt harum debitis eaque autem natus eveniet commodi nam magni rerum dolore. Soluta cum repudiandae ducimus nihil.
-          Recusandae eveniet ad magnam amet nisi esse velit, debitis ipsam eum ullam rerum accusamus quam minus animi voluptatibus, sint doloribus! Quis animi sunt facere? Fuga iure quisquam repellat ducimus sint?
-          Asperiores, debitis est? Tempora animi cum iure fugit deleniti, nobis ratione consequatur. Dolor pariatur assumenda explicabo voluptates recusandae inventore earum dicta, atque nostrum error sequi sed ipsam aliquid tempore quibusdam.</p>
+        <div className="col-md-6 pt-4">
+          <h1>About CollegeCrafters</h1>
+
+          <section>
+            <h2>Our Mission</h2>
+            <p>
+              At CollegeCrafters, we are on a mission to simplify the college experience by providing a seamless platform
+              for students to access a wide range of college-related essentials. From stationery to uniforms, we've got you covered.
+            </p>
+          </section>
+
+          <section>
+            <h2>What We Offer</h2>
+            <h3>College Essentials</h3>
+            <p>
+              Discover a curated collection of high-quality stationery and college uniforms tailored to meet the diverse needs
+              of college students. We understand the importance of having the right tools for success, and our products are designed
+              to enhance your academic journey.
+            </p>
+
+            <h3>Xerox Services</h3>
+            <p>
+              Say goodbye to the hassle of finding a nearby copy center. With our Xerox services, you can conveniently upload
+              your PDF documents and receive high-quality photocopies at your desired location. It's quick, easy, and designed
+              to save you time.
+            </p>
+          </section>
+
+          <section>
+            <h2>Why Choose CollegeCrafters?</h2>
+            <ul>
+              <li>
+                <strong>Convenience:</strong> Shop for all your college needs from the comfort of your home.
+              </li>
+              <li>
+                <strong>Quality:</strong> We source top-notch products to ensure your satisfaction.
+              </li>
+              <li>
+                <strong>Reliability:</strong> Count on us for timely deliveries and efficient Xerox services.
+              </li>
+              <li>
+                <strong>Secure Payments:</strong> Enjoy peace of mind with our secure online payment options.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>How It Works</h2>
+            <ol>
+              <li>
+                <strong>Browse Products:</strong> Explore our extensive collection of college essentials.
+              </li>
+              <li>
+                <strong>Add to Cart:</strong> Select the items you need and add them to your shopping cart.
+              </li>
+              <li>
+                <strong>Secure Checkout:</strong> Complete your purchase securely with our online payment options.
+              </li>
+              <li>
+                <strong>Xerox Services:</strong> Easily upload your PDF documents and choose your delivery location.
+              </li>
+            </ol>
+          </section>
         </div>
       </div>
     </Layout>

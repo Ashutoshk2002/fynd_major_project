@@ -6,9 +6,10 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoute.js";
+import xeroxRoutes from "./routes/xeroxRoute.js";
 import cors from "cors";
 import path from "path";
-import {fileURLToPath} from 'url'
+import {fileURLToPath} from 'url';
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, "./client/dist")));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoute);
 app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/xerox", xeroxRoutes);
 
 app.use("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/dist/index.html"));

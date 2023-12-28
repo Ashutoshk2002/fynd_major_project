@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import Layout from '../components/Layout/Layout'
-import axios from 'axios'
-import { useParams, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import Layout from '../components/Layout/Layout';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const CategoryProduct = () => {
-    const params = useParams()
-    const navigate = useNavigate()
-    const [products, setProduct] = useState([])
-    const [category, setCategory] = useState([])
+    const params = useParams();
+    const navigate = useNavigate();
+    const [products, setProduct] = useState([]);
+    const [category, setCategory] = useState([]);
     const getProductByCay = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/product-category/${params.slug}`)
-            setProduct(data?.products)
-            setCategory(data?.category)
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/product/product-category/${params.slug}`);
+            setProduct(data?.products);
+            setCategory(data?.category);
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        if (params?.slug) getProductByCay()
+        if (params?.slug) getProductByCay();
     }, [params?.slug])
     return (
 
