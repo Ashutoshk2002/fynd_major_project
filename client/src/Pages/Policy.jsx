@@ -6,7 +6,7 @@ const Policy = () => {
     <Layout title={"Privacy Policy"}>
       <div className="row contactus">
         <div className="col-md-6">
-          <img src="./src/assets/pp.jpg" alt="contactus" style={{ width: "100%" }} />
+          <img src="/src/assets/pp.jpg" alt="contactus" style={{ width: "100%" }} />
         </div>
         <div className="col-md-4">
           <div className="container mt-4">

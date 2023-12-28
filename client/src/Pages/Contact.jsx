@@ -17,7 +17,7 @@ const Contact = () => {
     <Layout title={"Contact Us"}>
       <div className="row contactus">
         <div className="col-md-6">
-          <img src="./src/assets/cs.jpg" alt="contactus" style={{ width: "100%" }} />
+          <img src="/src/assets/cs.jpg" alt="contactus" style={{ width: "100%" }} />
         </div>
         <div className="col-md-4 pt-4">
           <h1 className="text-center p-2 ">Contact Us</h1>

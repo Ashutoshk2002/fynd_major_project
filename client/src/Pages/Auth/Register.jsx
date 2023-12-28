@@ -68,7 +68,7 @@ const Register = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             className="form-control"
                             id="exampleInputPassword1"
-                            placeholder="Password"
+                            placeholder="Password (More than 5 Characters) "
                             required
                         />
                     </div>

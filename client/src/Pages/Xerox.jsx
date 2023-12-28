@@ -109,6 +109,7 @@ const Xerox = () => {
                                     <input type="file" className="form-control-file p-2" accept=".pdf"
                                         onChange={(e) => { setFile(e.target.files[0]) }} name="file" required />
                                 </div>
+                                <p className=' text-danger'>*Size Limit 16 Mb</p>
                                 <div className="form-group ">
                                     <label htmlFor="description">Description</label>
                                     <textarea className="form-control" name="description"
@@ -124,6 +125,7 @@ const Xerox = () => {
                                     <input type='text' className="form-control" name="location"
                                         onChange={(e) => setLocation(e.target.value)} rows={3} placeholder='Campus location / Shipping Address (Default)' />
                                 </div>
+                                <p className='m-2 text-danger'>*Login Before Proceeding</p>
                             </div>
                         </div>
 
