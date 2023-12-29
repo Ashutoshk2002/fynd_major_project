@@ -1,13 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
-
+import AboutPic from '/images/about.jpg'
 
 const About = () => {
   return (
     <Layout title={"About us - CollegeCrafters"}>
       <div className="row contact_us">
         <div className="col-md-5">
-          <img src='http://tinyurl.com/yquwsvvv' alt="contactus" style={{ width: "100%"}} />
+          <img src={AboutPic} alt="contactus" style={{ width: "100%"}} />
         </div>
         <div className="col-md-6 pt-4">
           <h1>About CollegeCrafters</h1>

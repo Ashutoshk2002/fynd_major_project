@@ -1,13 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout/Layout';
 import { Link } from 'react-router-dom';
-
+import PolicyPic from '/images/pp.jpg'
 const Policy = () => {
   return (
     <Layout title={"Privacy Policy"}>
       <div className="row contactus">
         <div className="col-md-6">
-          <img src='http://tinyurl.com/yquwsvvv' alt="contactus" style={{ width: "100%" }} />
+          <img src={PolicyPic} alt="contactus" style={{ width: "100%" }} />
         </div>
         <div className="col-md-4">
           <div className="container mt-4">
